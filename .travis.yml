@@ -1,4 +1,4 @@
-os: osx
+os: Windows
 dist: focal
 language: python
 
