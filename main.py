@@ -35,7 +35,8 @@ MDScreen:
                     md_bg_color: "#e7e4c0"
                     specific_text_color: "#4a4939"
                     left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
+                MDTextField:
+                    hint_text: "No helper text"
         MDNavigationDrawer:
             id: nav_drawer
             radius: (0, 16, 16, 0)
@@ -74,15 +75,17 @@ MDScreen:
                 DrawerLabelItem:
                     icon: "information-outline"
                     text: "Label"
+                    
+                
 '''
 
-class ContentNavigationDrawer(MDBoxLayout):
+class CarExpensensApp(MDBoxLayout):
     pass
 
 
-class CarExpensens(MDApp):
+class CarExpensensApp(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
         return Builder.load_string(KV)
 
-CarExpensens().run()
+CarExpensensApp().run()
