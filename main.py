@@ -1,10 +1,88 @@
+from kivy.lang import Builder
+
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.app import MDApp
-from kivymd.uix.label import MDLabel
+
+KV = '''
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
 
 
-class CarexpensesApp(MDApp):
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+
+MDScreen:
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                MDTopAppBar:
+                    title: "Car Expensens"
+                    elevation: 4
+                    pos_hint: {"top": 1}
+                    md_bg_color: "#e7e4c0"
+                    specific_text_color: "#4a4939"
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "Menu"
+                    title_color: "#4a4939"
+                    text: "---"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+                MDNavigationDrawerLabel:
+                    text: "Автомобиль"
+
+                DrawerClickableItem:
+                    icon: "My files"
+                    right_text: " "
+                    text_right_color: "#4a4939"
+                    text: "Расходы"
+
+                DrawerClickableItem:
+                    icon: "send"
+                    text: "Outbox"
+
+                MDNavigationDrawerDivider:
+
+                MDNavigationDrawerLabel:
+                    text: "Labels"
+
+                DrawerLabelItem:
+                    icon: "information-outline"
+                    text: "Label"
+
+                DrawerLabelItem:
+                    icon: "information-outline"
+                    text: "Label"
+'''
+
+class ContentNavigationDrawer(MDBoxLayout):
+    pass
+
+
+class CarExpensens(MDApp):
     def build(self):
-        return MDLabel(text="Hello, Carexpenses", halign="center")
+        self.theme_cls.theme_style = "Dark"
+        return Builder.load_string(KV)
 
-
-CarexpensesApp().run()
+CarExpensens().run()
